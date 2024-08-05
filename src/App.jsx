@@ -1,3 +1,5 @@
+// INI ADALAH ROUTER
+
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./Component/Landing/Navbar/navbar";
@@ -15,8 +17,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/perangkat" element={<Perangkaty />}/>
-            <Route path="/detail-perangkat/:id" element={<Detail />}/>
-            <Route path="/history-perangkat/:id" element={<Historypage />} />
+            <Route path="/detail-perangkat/:guid_device" element={<Detail />}/>
+            <Route path="/history-perangkat/:guid_device" element={<Historypage />} />
           </Routes>
         </Router>
       </div>

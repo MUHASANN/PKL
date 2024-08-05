@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import backgroundImage from '../../asset/img.jpg';
 
-const Carddetail = ({ id, leftcard, leftcard2, centercard, rightcard, rightcard2, rightcard3 }) => {
+const Carddetail = ({ guid_device, leftcard, leftcard2, centercard, rightcard, rightcard2, rightcard3 }) => {
   return (
     <div className="flex justify-center p-10 bg-gray-200">
       <div className="grid grid-cols-1 md:grid-cols-1 mb-4">
@@ -26,7 +26,7 @@ const Carddetail = ({ id, leftcard, leftcard2, centercard, rightcard, rightcard2
             style={{ backgroundImage: `url(${backgroundImage})` }}>
             {centercard}
           </div>
-          <Link to={`/history-perangkat/${id}`} className="bg-yellow-400 mr-2 mt-2 text-white py-2 px-4 rounded-lg shadow hover:bg-yellow-500 transition-colors duration-300 ease-in-out">
+          <Link to={`/history-perangkat/${guid_device}`} className="bg-yellow-400 mr-2 mt-2 text-white py-2 px-4 rounded-lg shadow hover:bg-yellow-500 transition-colors duration-300 ease-in-out">
             History
           </Link>
         </div>

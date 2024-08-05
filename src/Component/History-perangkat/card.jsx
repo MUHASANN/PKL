@@ -14,7 +14,7 @@ const Card = ({ image, title, description }) => {
 };
 
 Card.propTypes = {
-  id: PropTypes.number.isRequired,
+  guid_device: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
