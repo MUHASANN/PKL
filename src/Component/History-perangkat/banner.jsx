@@ -3,20 +3,20 @@ import { useParams } from "react-router-dom";
 import Card from "./card";
 import notFoundImage from "/404.png";
 import { FaClockRotateLeft } from "react-icons/fa6";
+import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 import { getDataHistory } from "../../Api/service/service";
 
 const History = () => {
   const { guid_device } = useParams();
   const [deviceData, setDeviceData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getDataHistory(1, 10, guid_device);
-        console.log(response.history);
-        console.log(deviceData);
-        if (response && response.history) {
+        const response = await getDataHistory(1, 20, guid_device);
+        if (response && Array.isArray(response.history)) {
           setDeviceData(response.history);
         } else {
           setDeviceData([]);
@@ -38,8 +38,14 @@ const History = () => {
   if (deviceData.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-full text-center py-[10%]">
-        <img src={notFoundImage} alt="404 Not Found" className="h-[20%] w-[20%] object-cover" />
-        <span className="font-semibold text-gray-700 text-md ml-6">History Tidak Ditemukan?!</span>
+        <img
+          src={notFoundImage}
+          alt="404 Not Found"
+          className="h-[20%] w-[20%] object-cover"
+        />
+        <span className="font-semibold text-gray-700 text-md mt-4">
+          History Tidak Ditemukan?!
+        </span>
       </div>
     );
   }
@@ -55,36 +61,48 @@ const History = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
   };
 
-  const Item = deviceData.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
+  const currentItems = deviceData.slice(
+    currentPage * itemsPerPage,
+    (currentPage + 1) * itemsPerPage
+  );
 
   return (
-    <div className="p-4 mt-3 flex flex-col items-center bg-gray-200">
+    <div className="p-4 flex flex-col items-center bg-gray-200">
       <div className="w-full bg-white p-4 rounded-lg shadow-md mb-4 font-semibold">
-        <div className="flex justify-start">
-          <h1 className="text-2xl font-bold">History</h1>
-          <FaClockRotateLeft className="ml-2 mt-2 text-[20px] text-yellow-400" />
+        <div className="flex items-center mb-1">
+          <h1 className="text-3xl font-bold flex-grow">History</h1>
+          <FaClockRotateLeft className="text-[20px] text-yellow-400 mr-[51em]" />
         </div>
-        <div className="grid grid-cols-5 gap-4 w-full font-semibold">
-          {Item.map((card) => (
-            <Card key={card.guid} guid_device={card.guid_device} image={`https://smartparking.pptik.id/data/data/${leftCardImage}`} title={card.guid_device} description={card.datetime} />
-          ))}
-        </div>
-        <div className="mt-4">
-          <button
-            onClick={handlePreviousPage}
-            disabled={currentPage === 0}
-            className="bg-gray-300 text-gray-700 px-4 py-2 rounded-l-lg disabled:opacity-50"
-          >
-            Previous
-          </button>
-          <button
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages - 1}
-            className="bg-gray-300 text-gray-700 px-4 py-2 rounded-r-lg disabled:opacity-50"
-          >
-            Next
-          </button>
-        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 w-full font-semibold">
+        {currentItems.map((card) => (
+          <Card
+            key={card.guid}
+            image={card.value || notFoundImage}
+            title={card.guid_device}
+            description={card.datetime}
+          />
+        ))}
+      </div>
+
+      <div className="mt-4 flex justify-between w-full">
+        <button
+          onClick={handlePreviousPage}
+          disabled={currentPage === 0}
+          className="bg-gray-300 text-gray-900 px-4 py-2 rounded-lg disabled:opacity-50 flex items-center"
+        >
+          <FaAngleLeft className="text-lg text-gray-900" />
+          <span className="ml-2">Previous</span>
+        </button>
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages - 1}
+          className="bg-gray-300 text-gray-900 px-4 py-2 rounded-lg disabled:opacity-50 flex items-center"
+        >
+          <span className="mr-2">Next</span>
+          <FaAngleRight className="text-lg text-gray-900" />
+        </button>
       </div>
     </div>
   );

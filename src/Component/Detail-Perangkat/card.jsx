@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import backgroundImage from '../../asset/img.jpg';
 
@@ -50,6 +51,16 @@ const Carddetail = ({ guid_device, leftcard, leftcard2, centercard, rightcard, r
       </div>
     </div>
   );
+};
+
+Carddetail.propTypes = {
+  guid_device: PropTypes.string.isRequired,
+  leftcard: PropTypes.node,
+  leftcard2: PropTypes.node,
+  centercard: PropTypes.node,
+  rightcard: PropTypes.node,
+  rightcard2: PropTypes.node,
+  rightcard3: PropTypes.node,
 };
 
 export default Carddetail;
