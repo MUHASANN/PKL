@@ -3,7 +3,15 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { FaWhmcs } from "react-icons/fa";
 
-const Card = ({ guid_device, title, description, buttonLabel, highlighted = false, onButtonClick }) => {
+const Card = ({
+  guid,
+  guid_device,
+  title,
+  description,
+  buttonLabel,
+  highlighted = false,
+  onButtonClick,
+}) => {
   const handleButtonClick = () => {
     if (onButtonClick) {
       onButtonClick();
@@ -11,7 +19,11 @@ const Card = ({ guid_device, title, description, buttonLabel, highlighted = fals
   };
 
   return (
-    <div className={`card p-4 bg-white border rounded shadow-md transition-transform transform hover:scale-105 duration-300 ease-in-out ${highlighted ? 'bg-yellow-100' : ''}`}>
+    <div
+      className={`card p-4 bg-white border rounded shadow-md transition-transform transform hover:scale-105 duration-300 ease-in-out ${
+        highlighted ? "bg-yellow-100" : ""
+      }`}
+    >
       <div className="flex items-center mb-2">
         <FaWhmcs className="text-gray-500 mr-2 w-4 h-4" />
         <h3 className="text-xl font-semibold">{title}</h3>
@@ -19,7 +31,7 @@ const Card = ({ guid_device, title, description, buttonLabel, highlighted = fals
       <p className="text-gray-600 mb-4">{description}</p>
       <div className="flex justify-between items-center">
         <Link
-          to={`/detail-perangkat/${guid_device}`}
+          to={`/detail-perangkat/${guid_device}/${guid}`}
           onClick={handleButtonClick}
           className="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 inline-block text-center"
         >

@@ -64,6 +64,7 @@ const Banner = () => {
         {currentCards.map((card) => (
           <Card
             key={card.guid}
+            guid={card.guid}
             guid_device={card.guid_device}
             title={card.name}
             description={card.guid_device}

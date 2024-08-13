@@ -61,7 +61,7 @@ const Banner = () => {
 
     const handleDetailClick = () => {
         if (activeMarker) {
-            navigate(`/detail-perangkat/${activeMarker.guid_device}`);
+            navigate(`/detail-perangkat/${activeMarker.guid_device}/${activeMarker.guid}`);
         }
     };
 

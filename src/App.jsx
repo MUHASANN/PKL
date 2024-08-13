@@ -17,7 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/perangkat" element={<Perangkaty />}/>
-              <Route path="/detail-perangkat/:guid_device" element={<Detail />}/>
+              <Route path="/detail-perangkat/:guid_device/:guid" element={<Detail />}/>
             <Route path="/history-perangkat/:guid_device" element={<Historypage />} />
           </Routes>
         </Router>
