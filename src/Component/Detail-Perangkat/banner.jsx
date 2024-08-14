@@ -39,7 +39,7 @@ const Banner = () => {
     return <div className="flex justify-center p-10">No data available</div>;
   }
 
-  const renderCards = historyData.map((history, guid) => {
+  const renderCards = historyData.map((history, index) => {
     const guidDevice = history.guid_device;
     const leftCardImage = history.value || notFoundImage;
     const deviceDescription = history.guid_device || "No description available";
@@ -47,7 +47,7 @@ const Banner = () => {
 
     return (
       <Carddetail
-        key={guid}
+        key={index}
         guid_device={guidDevice}
         leftcard={<img src={`https://smartparking.pptik.id/data/data/${leftCardImage}`} alt="Device" className="w-full h-[200px] object-cover rounded-lg" />}
         leftcard2={<img src={`https://smartparking.pptik.id/data/data/${leftCardImage}`} alt="Device" className="w-full h-[200px] object-cover rounded-lg" />}
@@ -100,7 +100,7 @@ const Banner = () => {
   return (
     <div className="relative">
       {renderCards}
-    </div> 
+    </div>
   );
 };
 

@@ -8,6 +8,9 @@ import Banner from "./Component/Landing/Banner/banner";
 import Perangkaty from "./Page/perangkat";
 import Detail from "./Page/detail";
 import Historypage from "./Page/history-1";
+import Banfi from "./Page/Banfi";
+import Peta from "./Page/Peta";
+import Historipage from "./Page/Informasi-histori";
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/perangkat" element={<Perangkaty />}/>
+            <Route path="/Informasi" element={<Banfi />}/>
+            <Route path="/Peta-Lokasi" element={<Peta />}/>
+            <Route path="/Histori-infromasi" element={<Historipage />}/>
               <Route path="/detail-perangkat/:guid_device" element={<Detail />}/>
             <Route path="/history-perangkat/:guid_device" element={<Historypage />} />
           </Routes>

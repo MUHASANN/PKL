@@ -37,16 +37,7 @@ const History = () => {
 
   if (deviceData.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-full text-center py-[10%]">
-        <img
-          src={notFoundImage}
-          alt="404 Not Found"
-          className="h-[20%] w-[20%] object-cover"
-        />
-        <span className="font-semibold text-gray-700 text-md mt-4">
-          History Tidak Ditemukan?!
-        </span>
-      </div>
+      <div className="flex justify-center p-10">No data available</div>
     );
   }
 
@@ -66,7 +57,7 @@ const History = () => {
     (currentPage + 1) * itemsPerPage
   );
 
-  return (
+  return ( 
     <div className="p-4 flex flex-col items-center bg-gray-200">
       <div className="w-full bg-white p-4 rounded-lg shadow-md mb-4 font-semibold">
         <div className="flex items-center mb-1">
