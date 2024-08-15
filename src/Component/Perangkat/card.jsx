@@ -11,12 +11,12 @@ const Card = ({ guid_device, title, description, buttonLabel, highlighted = fals
   };
 
   return (
-    <div className={`card p-4 bg-white border rounded shadow-md transition-transform transform hover:scale-105 duration-300 ease-in-out ${highlighted ? 'bg-yellow-100' : ''}`}>
+    <div className={`card p-4 bg-gray-700 border rounded shadow-md transition-transform transform hover:scale-105 duration-300 ease-in-out ${highlighted ? 'bg-yellow-100' : ''}`}>
       <div className="flex items-center mb-2">
-        <FaWhmcs className="text-gray-500 mr-2 w-4 h-4" />
-        <h3 className="text-xl font-semibold">{title}</h3>
+        <FaWhmcs className="text-gray-100 mr-2 w-4 h-4" />
+        <h3 className="text-xl font-semibold text-white">{title}</h3>
       </div>
-      <p className="text-gray-600 mb-4">{description}</p>
+      <p className="text-gray-100 mb-4">{description}</p>
       <div className="flex justify-between items-center">
         <Link
           to={`/detail-perangkat/${guid_device}`}

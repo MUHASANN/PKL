@@ -40,13 +40,13 @@ const History = () => {
             <div className='w-full bg-white py-3 mb-6 flex justify-between items-center rounded-lg'>
                 <h1 className="text-2xl font-bold px-8">Histori</h1>
                 <div className="flex space-x-2 px-8">
-                    <div className="w-8 h-8 bg-blue-300 rounded-full flex justify-center items-center">
+                    <div className="w-8 h-8 bg-blue-400 rounded-full flex justify-center items-center">
                         {/* Add icon or content here */}
                     </div>
-                    <div className="w-8 h-8 bg-yellow-300 rounded-full flex justify-center items-center">
+                    <div className="w-8 h-8 bg-yellow-400 rounded-full flex justify-center items-center">
                         {/* Add icon or content here */}
                     </div>
-                    <div className="w-8 h-8 bg-green-300 rounded-full flex justify-center items-center">
+                    <div className="w-8 h-8 bg-green-400 rounded-full flex justify-center items-center">
                         {/* Add icon or content here */}
                     </div>
                 </div>

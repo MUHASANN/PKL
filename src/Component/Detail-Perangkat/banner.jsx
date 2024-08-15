@@ -32,7 +32,16 @@ const Banner = () => {
   }, [guid_device]);
 
   if (loading) {
-    return <div className="flex justify-center p-10">Loading...</div>;
+    return (
+      <div className="flex flex-col items-center p-10">
+        <div className="animate-pulse w-full max-w-md">
+          <div className="h-48 bg-gray-300 rounded-lg mb-4"></div>
+          <div className="h-4 bg-gray-300 rounded mb-2"></div>
+          <div className="h-4 bg-gray-300 rounded mb-2"></div>
+          <div className="h-4 bg-gray-300 rounded mb-2"></div>
+        </div>
+      </div>
+    );
   }
 
   if (historyData.length === 0 && deviceData.length === 0) {
@@ -43,7 +52,7 @@ const Banner = () => {
     const guidDevice = history.guid_device;
     const leftCardImage = history.value || notFoundImage;
     const deviceDescription = history.guid_device || "No description available";
-    const deviceDate = new Date(history.datetime).toLocaleDateString();
+    const deviceDate = history.datetime ? new Date(history.datetime).toLocaleDateString('en-GB') : "No date available";
 
     return (
       <Carddetail
@@ -60,13 +69,13 @@ const Banner = () => {
         rightcard={
           <div>
             <h2 className="text-xl font-semibold">Device :</h2>
-            <p className="mt-2 text-md font-semibold">{deviceDescription}</p>
+            <p className="mt-2 text-sm">{deviceDescription}</p>
           </div>
         }
         rightcard2={
           <div>
             <h2 className="text-xl font-semibold">Tanggal :</h2>
-            <p className="text-md mt-2 font-semibold">{deviceDate}</p>
+            <p className="text-sm mt-2">{deviceDate}</p>
           </div>
         }
         rightcard3={

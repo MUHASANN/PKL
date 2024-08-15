@@ -17,22 +17,33 @@ const Peta = () => {
                     />
                     <Marker position={[51.505, -0.09]}>
                         <Popup>
-                            A pretty CSS3 popup. <br /> Easily customizable.
+                            <div className="text-center w-[150px]">
+                                <a href="#" target="_blank" rel="noopener noreferrer">
+                                    <img 
+                                        src="https://via.placeholder.com/150" 
+                                        alt="Location" 
+                                        className="w-full h-auto rounded-md mt-3 cursor-pointer"
+                                    />
+                                </a>
+                                <p className="text-sm text-gray-600">
+                                    klik gambar
+                                </p>
+                            </div>
                         </Popup>
                     </Marker>
                 </MapContainer>
 
                 {/* Header Section */}
                 <div className="absolute top-3 left-0 w-[56em] ml-[20em] flex justify-between items-center p-3 bg-white rounded-lg shadow-lg z-10">
-                    <div className="w-8 h-8 bg-blue-300 rounded-full flex justify-center items-center ml-2">
-                            {/* Add icon or content here */}
-                        </div>
-                        <div className="w-8 h-8 bg-yellow-300 rounded-full flex justify-center items-center ml-2">
-                            {/* Add icon or content here */}
-                        </div>
-                        <div className="w-8 h-8 bg-green-300 rounded-full flex justify-center items-center ml-2 mr-2">
-                            {/* Add icon or content here */}
-                        </div>
+                    <div className="w-8 h-8 bg-blue-400 rounded-full flex justify-center items-center ml-2">
+                        {/* Add icon or content here */}
+                    </div>
+                    <div className="w-8 h-8 bg-yellow-400 rounded-full flex justify-center items-center ml-2">
+                        {/* Add icon or content here */}
+                    </div>
+                    <div className="w-8 h-8 bg-green-400 rounded-full flex justify-center items-center ml-2 mr-2">
+                        {/* Add icon or content here */}
+                    </div>
                     <div className="flex-grow mx-4">
                         <input
                             type="text"
@@ -40,7 +51,7 @@ const Peta = () => {
                             placeholder="Search..."
                         />
                     </div>
-                    <h2 className="text-gray-900 text-lg font-semibold mr-10">
+                    <h2 className="text-gray-900 text-lg font-semibold mr-12">
                         PETA LOKASI
                     </h2>
                 </div>
