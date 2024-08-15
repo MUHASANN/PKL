@@ -3,7 +3,7 @@ import Card from "./card";
 import { FaSearch, FaDesktop, FaAngleRight, FaAngleLeft } from "react-icons/fa";
 import { getDataDevice } from "../../Api/service/service";
 
-const ITEMS_PER_PAGE = 2;
+const ITEMS_PER_PAGE = 4;
 
 const Banner = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -63,7 +63,7 @@ const Banner = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 bg-white p-6 mt-6 rounded-lg shadow-md">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 bg-white p-4 mt-6 rounded-lg shadow-md">
         {loading
           ? Array.from({ length: ITEMS_PER_PAGE }).map((_, index) => (
               <div
