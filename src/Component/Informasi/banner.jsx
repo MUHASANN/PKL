@@ -20,12 +20,12 @@ const DropdownMenu = ({ isOpen }) => {
         </div>
       </div>
       <div className="p-4">
-        <Link to="/Peta-Lokasi" className="flex items-center hover:text-gray-500">
+        <Link to="#" className="flex items-center hover:text-gray-500">
           <span>Koleksi & perangkat</span>
         </Link>
       </div>
       <div className="p-4">
-        <Link to="/settings" className="flex items-center hover:text-gray-500">
+        <Link to="#" className="flex items-center hover:text-gray-500">
           <span>Setelan</span>
         </Link>
       </div>
