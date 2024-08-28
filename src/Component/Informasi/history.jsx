@@ -1,36 +1,36 @@
 import React from 'react';
+import Gajah from '../../asset/CCTV/Gajah_Giring.jpeg';
 
-// Sample card data
 const cardData = [
     {
         id: 1,
-        image: 'https://via.placeholder.com/150',
-        name: 'Item One',
-        description: 'This is a description for item one.'
+        image: Gajah,
+        name: 'CAM-P013',
+        description: '20/08/2024'
     },
     {
         id: 2,
-        image: 'https://via.placeholder.com/150',
-        name: 'Item Two',
-        description: 'This is a description for item two.'
+        image: Gajah,
+        name: 'CAM-P013',
+        description: '21/08/2024'
     },
     {
         id: 3,
-        image: 'https://via.placeholder.com/150',
-        name: 'Item Three',
-        description: 'This is a description for item three.'
+        image: Gajah,
+        name: 'CAM-P013',
+        description: '21/08/2024'
     },
     {
         id: 4,
-        image: 'https://via.placeholder.com/150',
-        name: 'Item Four',
-        description: 'This is a description for item four.'
+        image: Gajah,
+        name: 'CAM-P013',
+        description: '22/08/2024'
     },
     {
         id: 5,
-        image: 'https://via.placeholder.com/150',
-        name: 'Item Five',
-        description: 'This is a description for item five.'
+        image: Gajah,
+        name: 'CAM-P010',
+        description: '22/08/2024'
     },
 ];
 

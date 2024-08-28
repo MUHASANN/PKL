@@ -52,7 +52,7 @@ const Banner = () => {
     const guidDevice = history.guid_device;
     const leftCardImage = history.value || notFoundImage;
     const deviceDescription = history.guid_device || "No description available";
-    const deviceDate = history.datetime ? new Date(history.datetime).toLocaleDateString('en-GB') : "No date available";
+    const deviceDate = history.datetime;
 
     return (
       <Carddetail
