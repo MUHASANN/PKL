@@ -73,7 +73,8 @@ import backgroundImage from '../../asset/img.jpg';
 const Carddetail = ({ guid_device, leftcard, leftcard2, centercard, rightcard, rightcard2, rightcard3 }) => {
   return (
     <div className="flex justify-center p-10 bg-gray-200">
-      <div className="grid grid-cols-1 md:grid-cols-1 mb-4 gap-4"> {/* Added gap-4 for spacing */}
+
+      <div className="grid grid-cols-1 md:grid-cols-1  mb-4">
         <div className="w-full md:w-1/1 p-2">
           <div className="bg-white p-4 rounded-lg shadow h-[320px] transition-transform transform hover:scale-105">
             {leftcard2}

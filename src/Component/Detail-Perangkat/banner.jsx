@@ -99,12 +99,22 @@ const Banner = () => {
   }, [guid_device]);
 
   if (loading) {
-    return <div className="flex justify-center p-10">Loading...</div>;
+    return (
+      <div className="flex flex-col items-center p-10">
+        <div className="animate-pulse w-full max-w-md">
+          <div className="h-48 bg-gray-300 rounded-lg mb-4"></div>
+          <div className="h-4 bg-gray-300 rounded mb-2"></div>
+          <div className="h-4 bg-gray-300 rounded mb-2"></div>
+          <div className="h-4 bg-gray-300 rounded mb-2"></div>
+        </div>
+      </div>
+    );
   }
 
   if (historyData.length === 0 && deviceData.length === 0) {
     return <div className="flex justify-center p-10">No data available</div>;
   }
+
 
   if (historyData.length === 0) {
     return (
@@ -126,9 +136,16 @@ const Banner = () => {
     const guidDevice = history.guid_device;
     const leftCardImage = history.value || notFoundImage;
 
+  const renderCards = historyData.map((history, index) => {
+    const guidDevice = history.guid_device;
+    const leftCardImage = history.value || notFoundImage;
+    const deviceDescription = history.guid_device || "No description available";
+    const deviceDate = history.datetime;
+
+
     return (
       <Carddetail
-        key={guid}
+        key={index}
         guid_device={guidDevice}
         // Data terakhir
         leftcard={
@@ -177,17 +194,26 @@ const Banner = () => {
         rightcard={
           <div>
             <h2 className="text-xl font-semibold">Device :</h2>
+
             <p className="mt-2 text-md font-semibold">
               {deviceDescription || "No device description available"}
             </p>
+
+            <p className="mt-2 text-sm">{deviceDescription}</p>
+
           </div>
         }
         rightcard2={
           <div>
+
             <h2 className="text-xl font-semibold">Tanggal Registrasi :</h2>
             <p className="text-md mt-2 font-semibold">
               {formattedDates || "No registration date available"}
             </p>
+
+            <h2 className="text-xl font-semibold">Tanggal :</h2>
+            <p className="text-sm mt-2">{deviceDate}</p>
+
           </div>
         }
         rightcard3={
@@ -221,7 +247,11 @@ const Banner = () => {
     );
   });
 
-  return <div className="relative">{renderCards}</div>;
+  return (
+    <div className="relative">
+      {renderCards}
+    </div>
+  );
 };
 
 export default Banner;

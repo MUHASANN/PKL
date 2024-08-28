@@ -6,6 +6,14 @@ import { FaClockRotateLeft } from "react-icons/fa6";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 import { getDataHistory } from "../../Api/service/service";
 
+const PlaceholderCard = () => (
+  <div className="bg-gray-300 animate-pulse p-4 rounded-lg shadow-lg h-[250px]">
+    <div className="bg-gray-100 h-[150px] rounded-lg mb-4"></div>
+    <div className="bg-gray-100 h-[20px] rounded-lg mb-2"></div>
+    <div className="bg-gray-100 h-[20px] rounded-lg"></div>
+  </div>
+);
+
 const History = () => {
   const { guid_device } = useParams();
   const [deviceData, setDeviceData] = useState([]);
@@ -32,25 +40,34 @@ const History = () => {
   }, [guid_device]);
 
   if (loading) {
-    return <div className="flex justify-center p-10">Loading...</div>;
-  }
-
-  if (deviceData.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-full text-center py-[10%]">
-        <img
-          src={notFoundImage}
-          alt="404 Not Found"
-          className="h-[20%] w-[20%] object-cover"
-        />
-        <span className="font-semibold text-gray-700 text-md mt-4">
-          History Tidak Ditemukan?!
-        </span>
+      <div className="p-6 bg-gray-100 min-h-screen">
+        <div className="bg-gray-700 text-white p-3 rounded-lg shadow-lg mb-6">
+          <div className="flex items-center mb-2 px-4">
+            <FaClockRotateLeft className="text-3xl mr-4" />
+            <h1 className="text-3xl font-bold flex-grow">History Gambar</h1>
+          </div>
+          <p className="text-lg ml-4 mb-1">riwayat dan garis waktu aktivitas perangkat</p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+          {Array.from({ length: 4 }).map((_, index) => (
+            <PlaceholderCard key={index} />
+          ))}
+        </div>
       </div>
     );
   }
 
-  const itemsPerPage = 10;
+  if (deviceData.length === 0) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-gray-200">
+        <div className="text-xl font-semibold">No data available</div>
+      </div>
+    );
+  }
+
+  const itemsPerPage = 8;
   const totalPages = Math.ceil(deviceData.length / itemsPerPage);
 
   const handleNextPage = () => {
@@ -67,15 +84,16 @@ const History = () => {
   );
 
   return (
-    <div className="p-4 flex flex-col items-center bg-gray-200">
-      <div className="w-full bg-white p-4 rounded-lg shadow-md mb-4 font-semibold">
-        <div className="flex items-center mb-1">
-          <h1 className="text-3xl font-bold flex-grow">History</h1>
-          <FaClockRotateLeft className="text-[20px] text-yellow-400 mr-[51em]" />
+    <div className="p-6 bg-gray-100 min-h-screen">
+      <div className="bg-gray-700 text-white p-3 rounded-lg shadow-lg mb-6">
+        <div className="flex items-center mb-2 px-4">
+          <FaClockRotateLeft className="text-3xl mr-4" />
+          <h1 className="text-3xl font-bold flex-grow">History Gambar</h1>
         </div>
+        <p className="text-lg ml-4 mb-1">riwayat dan garis waktu aktivitas perangkat</p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 w-full font-semibold">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
         {currentItems.map((card) => (
           <Card
             key={card.guid}
@@ -86,22 +104,25 @@ const History = () => {
         ))}
       </div>
 
-      <div className="mt-4 flex justify-between w-full">
+      <div className="mt-6 flex justify-between items-center">
         <button
           onClick={handlePreviousPage}
           disabled={currentPage === 0}
-          className="bg-gray-300 text-gray-900 px-4 py-2 rounded-lg disabled:opacity-50 flex items-center"
+          className="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg disabled:opacity-50 flex items-center"
         >
-          <FaAngleLeft className="text-lg text-gray-900" />
+          <FaAngleLeft className="text-lg" />
           <span className="ml-2">Previous</span>
         </button>
+        <span className="text-gray-800 font-semibold">
+          Page {currentPage + 1} of {totalPages}
+        </span>
         <button
           onClick={handleNextPage}
           disabled={currentPage === totalPages - 1}
-          className="bg-gray-300 text-gray-900 px-4 py-2 rounded-lg disabled:opacity-50 flex items-center"
+          className="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg disabled:opacity-50 flex items-center"
         >
           <span className="mr-2">Next</span>
-          <FaAngleRight className="text-lg text-gray-900" />
+          <FaAngleRight className="text-lg" />
         </button>
       </div>
     </div>
