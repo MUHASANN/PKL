@@ -13,7 +13,7 @@ const Banner = () => {
     const [activeMarker, setActiveMarker] = useState(null);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const mapRef = useRef();
+    const mapRef = useRef(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -54,7 +54,6 @@ const Banner = () => {
         setActiveMarker(marker);
     };
 
-
     const handleDetailClick = () => {
         if (activeMarker) {
             navigate(`/detail-perangkat/${activeMarker.guid_device}/${activeMarker.guid}`);
@@ -62,9 +61,8 @@ const Banner = () => {
     };
 
     const handleHistoryClick = () => {
-    const handleNavigation = (route) => {
         if (activeMarker) {
-            navigate(route.replace(':guid_device', activeMarker.guid_device));
+            navigate(`/history-perangkat/${activeMarker.guid_device}`);
         }
     };
 
@@ -79,8 +77,8 @@ const Banner = () => {
                 </svg>
             `,
             iconSize: [24, 24],
-            iconAnchor: [0, 0],
-            popupAnchor: [0, -24]
+            iconAnchor: [12, 24], // Center icon
+            popupAnchor: [0, -24] // Popup position
         });
     };
 
@@ -118,13 +116,13 @@ const Banner = () => {
                             <strong>{marker.name}</strong>
                             <div className="mt-2 flex gap-2">
                                 <button
-                                    onClick={() => handleNavigation('/detail-perangkat/:guid_device')}
+                                    onClick={handleDetailClick}
                                     className="bg-blue-500 text-white px-2 py-1 rounded-md transition-colors duration-300 ease-in-out hover:bg-blue-600"
                                 >
                                     Detail
                                 </button>
                                 <button
-                                    onClick={() => handleNavigation('/history-perangkat/:guid_device')}
+                                    onClick={handleHistoryClick}
                                     className="bg-green-500 text-white px-2 py-1 rounded-md transition-colors duration-300 ease-in-out hover:bg-green-600"
                                 >
                                     History

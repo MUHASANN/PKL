@@ -8,7 +8,7 @@ import notFoundImage from "../../../public/404.png";
 import { getDataHistory, getDataDeviceCamera } from "../../Api/service/service";
 
 const Banner = () => {
-  const { guid_device,guid } = useParams();
+  const { guid_device, guid } = useParams();
   const [deviceData, setDeviceData] = useState([]);
   const [historyData, setHistoryData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,22 +25,19 @@ const Banner = () => {
         const historyResponse = await getDataHistory(1, 1, guid_device);
         setHistoryData(historyResponse.history || []);
         const deviceResponse = await getDataDeviceCamera(guid);
-       
+
         setDeviceData(Array.isArray(deviceResponse) ? deviceResponse : []);
         if (deviceResponse.length > 0) {
           setLatitude(deviceResponse[0].latitude);
           setLongitude(deviceResponse[0].longitude);
           setDeviceDescription(deviceResponse[0].name);
-          console.log(deviceResponse[0])
-          console.log(deviceResponse[0].name)
-          const formattedDate = new Date(
-            deviceResponse[0].create_at
-          ).toLocaleDateString("en-US", {
+
+          const formattedDate = new Date(deviceResponse[0].create_at).toLocaleDateString("en-US", {
             year: "numeric",
             month: "long",
             day: "numeric",
-            hour: "2-digit", 
-            minute: "2-digit", 
+            hour: "2-digit",
+            minute: "2-digit",
             second: "2-digit",
           });
           setFormattedDate(formattedDate);
@@ -64,7 +61,7 @@ const Banner = () => {
       } catch (error) {
         console.error("Error fetching real-time data:", error);
       }
-    }, 600000); // 10 seconds interval
+    }, 10000); // 10 seconds interval
 
     setIntervalId(id);
 
@@ -115,7 +112,6 @@ const Banner = () => {
     return <div className="flex justify-center p-10">No data available</div>;
   }
 
-
   if (historyData.length === 0) {
     return (
       <div className="flex justify-center p-10">
@@ -132,16 +128,10 @@ const Banner = () => {
     );
   }
 
-  const renderCards = historyData.map((history, guid) => {
-    const guidDevice = history.guid_device;
-    const leftCardImage = history.value || notFoundImage;
-
   const renderCards = historyData.map((history, index) => {
     const guidDevice = history.guid_device;
     const leftCardImage = history.value || notFoundImage;
-    const deviceDescription = history.guid_device || "No description available";
     const deviceDate = history.datetime;
-
 
     return (
       <Carddetail
@@ -157,8 +147,7 @@ const Banner = () => {
               className="w-full h-[200px] object-cover rounded-lg mb-2"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src =
-                  "https://monitoring.pptik.id/data/RFIDCAM/no_image.jpg";
+                e.target.src = "https://monitoring.pptik.id/data/RFIDCAM/no_image.jpg";
               }}
             />
             <p className="text-sm text-gray-600">{formattedDates}</p>
@@ -169,15 +158,12 @@ const Banner = () => {
           <div className="p-4 bg-gray-50 rounded-lg shadow-md">
             <h3 className="text-md font-semibold mb-2">Data Realtime</h3>
             <img
-              src={`https://smartparking.pptik.id/data/data/${
-                realTimeData.value || notFoundImage
-              }`}
+              src={`https://smartparking.pptik.id/data/data/${realTimeData.value || notFoundImage}`}
               alt="Last Data Image"
               className="w-full h-[200px] object-cover rounded-lg mb-2"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src =
-                  "https://monitoring.pptik.id/data/RFIDCAM/no_image.jpg";
+                e.target.src = "https://monitoring.pptik.id/data/RFIDCAM/no_image.jpg";
               }}
             />
             <p className="text-sm text-gray-600">
@@ -194,26 +180,19 @@ const Banner = () => {
         rightcard={
           <div>
             <h2 className="text-xl font-semibold">Device :</h2>
-
             <p className="mt-2 text-md font-semibold">
               {deviceDescription || "No device description available"}
             </p>
-
-            <p className="mt-2 text-sm">{deviceDescription}</p>
-
           </div>
         }
         rightcard2={
           <div>
-
             <h2 className="text-xl font-semibold">Tanggal Registrasi :</h2>
             <p className="text-md mt-2 font-semibold">
               {formattedDates || "No registration date available"}
             </p>
-
             <h2 className="text-xl font-semibold">Tanggal :</h2>
             <p className="text-sm mt-2">{deviceDate}</p>
-
           </div>
         }
         rightcard3={
@@ -227,19 +206,18 @@ const Banner = () => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               />
-              {deviceData.length > 0 &&
-                deviceData.map((device) => (
-                  <Marker
-                    key={device.guid}
-                    position={[device.latitude, device.longitude]}
-                  >
-                    <Popup>
-                      <div>
-                        <strong>{device.name}</strong>
-                      </div>
-                    </Popup>
-                  </Marker>
-                ))}
+              {deviceData.map((device) => (
+                <Marker
+                  key={device.guid}
+                  position={[device.latitude, device.longitude]}
+                >
+                  <Popup>
+                    <div>
+                      <strong>{device.name}</strong>
+                    </div>
+                  </Popup>
+                </Marker>
+              ))}
             </MapContainer>
           </div>
         }
